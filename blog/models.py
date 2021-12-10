@@ -7,6 +7,7 @@ class Posts(models.Model):
     description = models.TextField()
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
+    image = models.ImageField(upload_to='', null=True)
 
     class Meta:
         verbose_name = 'Post'

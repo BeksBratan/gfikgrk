@@ -3,10 +3,13 @@
 {% block title %}Posts{% endblock %}
 
 {% block content %}
-    {% for i in posts %}
-        <li class='post'>
-            <h2><a href="/posts/{{ i.pk }}/">{{ i.title }}</a></h2>
-            <p class="post-description">{{ i.description }}</p>
-        </li>
+    {% for i in post %}
+    <li class='post'>
+        <h2><a href="/posts/{{ i.pk }}/">{{ i.title }}</a></h2>
+        <p> {{ i.description }}</p>
+        <img src="{{ i.image.url }}" alt="">
+        <p>{{ i.created_date }}</p>
+        <p>{{ i.updated_date }}</p>
+    </li>
     {% endfor %}
 {% endblock %}

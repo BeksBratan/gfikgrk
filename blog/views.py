@@ -1,22 +1,20 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
-from blog.models import Posts, Comments
+from . import models
 
 
-def hello(request):
-    return HttpResponse('Hello Python!')
-
+# def get_posts(request):
+#     context = {
+#         'posts': Posts.objects.all()
+#     }
+#     return render(request, 'post_list.html', context)
 
 def get_posts(request):
-    context = {
-        'posts': Posts.objects.all()
-    }
-    return render(request, 'post_list.html', context)
+    post = models.Posts.objects.all()
+    return render(request, 'post_list.html', {'post': post})
 
 
 def comments(request):
     context = {
-        'comments': Comments.objects.all()
+        'comments': models.Comments.objects.all()
     }
     return render(request, 'comments.html', context)
