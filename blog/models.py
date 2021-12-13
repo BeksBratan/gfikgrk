@@ -9,6 +9,9 @@ class Posts(models.Model):
     updated_date = models.DateField(auto_now=True)
     image = models.ImageField(upload_to='', null=True)
 
+    def __str__(self):
+        return f'{self.title}'
+
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
@@ -19,6 +22,9 @@ class Comments(models.Model):
     comment_text = models.TextField('Comment')
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.comment_type}'
 
     class Meta:
         verbose_name = 'Comment'

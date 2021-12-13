@@ -5,11 +5,7 @@
 {% block content %}
     {% for i in post %}
     <li class='post'>
-        <h2><a href="/posts/{{ i.pk }}/">{{ i.title }}</a></h2>
-        <p> {{ i.description }}</p>
-        <img src="{{ i.image.url }}" alt="">
-        <p>{{ i.created_date }}</p>
-        <p>{{ i.updated_date }}</p>
+        <h2><a href="/posts/{{ i.id }}/">{{ i.title }}</a></h2>
     </li>
     {% endfor %}
 {% endblock %}
