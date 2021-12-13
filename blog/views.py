@@ -10,14 +10,14 @@ from . import models
 #     return render(request, 'post_list.html', context)
 
 def get_posts(request):
-    post = models.Posts.objects.all()
+    post = models.Post.objects.all()
     return render(request, 'post_list.html', {'post': post})
 
 
 def post_detail(request, id):
     try:
-        post = models.Posts.objects.get(id=id)
-    except models.Posts.DoesNotExist:
+        post = models.Post.objects.get(id=id)
+    except models.Post.DoesNotExist:
         raise Http404('Post does not exist, baby')
 
     return render(request, 'post_detail.html', {'post': post})

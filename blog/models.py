@@ -1,20 +1,15 @@
 from django.db import models
 
 
-class Posts(models.Model):
-    # Поля:
+class Post(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    created_date = models.DateField(auto_now_add=True)
-    updated_date = models.DateField(auto_now=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='', null=True)
 
     def __str__(self):
         return f'{self.title}'
-
-    class Meta:
-        verbose_name = 'Post'
-        verbose_name_plural = 'Posts'
 
 
 class Comments(models.Model):
