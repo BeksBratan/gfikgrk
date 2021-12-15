@@ -14,8 +14,8 @@ class PostForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     class Meta:
-        model = models.Comments
+        model = models.Comment
         fields = [
             'post',
-            'text',
+            'text'
         ]

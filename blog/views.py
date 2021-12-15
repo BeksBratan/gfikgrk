@@ -1,38 +1,25 @@
 from django.http import Http404, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from . import models, forms
 
 
-# def get_posts(request):
-#     context = {
-#         'posts': Posts.objects.all()
-#     }
-#     return render(request, 'post_list.html', context)
-
 def get_posts(request):
     post = models.Post.objects.all()
-    return render(request, 'post_list.html', {'post': post})
+    return render(request, 'blog/post_list.html', {'post': post})
 
 
 def post_detail(request, id):
     try:
         post = models.Post.objects.get(id=id)
         try:
-            comment = models.Comments.objects.filter(post_id=id).order_by('created_date')
-        except models.Comments.DoesNotExist:
+            comment = models.Comment.objects.filter(post_id=id).order_by('created_date')
+        except models.Comment.DoesNotExist:
             return HttpResponse('No Comments')
 
     except models.Post.DoesNotExist:
         raise Http404('Post does not exist, baby')
 
-    return render(request, 'post_detail.html', {'post': post, 'post_comment': comment})
-
-
-def comments(request):
-    context = {
-        'comments': models.Comments.objects.all()
-    }
-    return render(request, 'comments.html', context)
+    return render(request, 'blog/post_detail.html', {'post': post, 'post_comment': comment})
 
 
 def add_post(request):
@@ -44,11 +31,10 @@ def add_post(request):
                                    description=form.data['description'],
                                    image=form.data['image'])
         return HttpResponse('Post Created Successfully')
-        # return redirect('post_view')
     else:
         form = forms.PostForm()
 
-    return render(request, 'add_post.html', {'form': form})
+    return render(request, 'blog/add_post.html', {'form': form})
 
 
 def add_comment(request):
@@ -61,4 +47,4 @@ def add_comment(request):
             return HttpResponse('Comment created successfully')
     else:
         form = forms.CommentForm
-    return render(request, 'add_comment.html', {'form': form})
+    return render(request, 'blog/add_comment.html', {'form': form})
