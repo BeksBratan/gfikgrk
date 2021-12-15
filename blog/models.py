@@ -13,13 +13,16 @@ class Post(models.Model):
 
 
 class Comments(models.Model):
-    comment_type = models.CharField('Type', max_length=100)
-    comment_text = models.TextField('Comment')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE,
+                             related_name='post_comment', null=True)
+    text = models.TextField(null=True)
     created_date = models.DateField(auto_now_add=True)
-    updated_date = models.DateField(auto_now=True)
+    # comment_type = models.CharField('Type', max_length=100)
+    # comment_text = models.TextField('Comment')
+    # updated_date = models.DateField(auto_now=True)
 
-    def __str__(self):
-        return f'{self.comment_type}'
+    # def __str__(self):
+    #     return f'{self.comment_type}'
 
     class Meta:
         verbose_name = 'Comment'
