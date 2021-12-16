@@ -15,7 +15,6 @@ def post_detail(request, id):
             comment = models.Comment.objects.filter(post_id=id).order_by('created_date')
         except models.Comment.DoesNotExist:
             return HttpResponse('No Comments')
-
     except models.Post.DoesNotExist:
         raise Http404('Post does not exist, baby')
 
@@ -46,5 +45,5 @@ def add_comment(request):
             form.save()
             return HttpResponse('Comment created successfully')
     else:
-        form = forms.CommentForm
+        form = forms.CommentForm()
     return render(request, 'blog/add_comment.html', {'form': form})

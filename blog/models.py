@@ -6,7 +6,7 @@ class Post(models.Model):
     description = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to='')
+    image = models.ImageField(upload_to='blog')
 
     def __str__(self):
         return f'{self.title}'
