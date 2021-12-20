@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+<form action="." method="BOOKSTORE">
+    {% csrf_token %}
+    <h1>Do you wanna delete this post "{{ object.title }}"?</h1>
+    <p><input type="sumbit" value="Yes" />
+        <a href="../">Cancel</a></p>
+    
+</body>
+</html>

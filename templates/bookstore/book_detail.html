@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Book detail</title>
+    <title>Detail Book</title>
 </head>
 <body>
 <div>
-    <h2>{{ book.title }}</h2>
-    <p>{{ book.description }}</p>
-    <img src="{{ book.image.url }}" alt="">
+    <h2>{{ object.title }}</h2>
+    <p>{{ object.description }}</p>
+    <img src="{{ object.image.url }}" alt="">
     <br><br>
-    <p>Created: {{ book.created_date }}</p>
-    <p>Updated: {{ book.updated_date }}</p>
+    Created date:<p>{{ object.created_date }}</p>
+    Updated date:<p>{{ object.updated_date }}</p>
 </div>
 <div>
     <h2>Comments: </h2>
@@ -19,11 +19,13 @@
         {% for i in book_comment.all %}
             <li>
                 <p>{{ i.text }}</p>
-                <p>Created on {{ i.created_date }}</p>
+                <p>{{ i.created_date }}</p>
             </li>
         {% endfor %}
     </ul>
-    <a href="/create-comment/{{ redirect_path }}/">Add Comment</a>
+    <a href="/books/{{object.id}}/update/">Update?</a>
+    <a href="/books/{{object.id}}/delete/">Delete?</a>
+    <a href="/add-comment/">Add Comment</a>
 </div>
 </body>
 </html>
